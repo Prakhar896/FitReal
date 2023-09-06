@@ -56,6 +56,7 @@ struct AuthenticateView: View {
                         .focused($emailIsFocused)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
+                        .textContentType(.emailAddress)
                         .frame(minHeight: 44)
                 }
                 
@@ -65,6 +66,7 @@ struct AuthenticateView: View {
                         .focused($passwordIsFocused)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
+                        .textContentType(.password)
                         .frame(minHeight: 44)
                 }
                 
@@ -75,6 +77,7 @@ struct AuthenticateView: View {
                             .focused($confirmPasswordIsFocused)
                             .textFieldStyle(.roundedBorder)
                             .textInputAutocapitalization(.never)
+                            .textContentType(.password)
                             .frame(minHeight: 44)
                     }
                 }
@@ -121,10 +124,10 @@ struct AuthenticateView: View {
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.8, height: 44)
-                .background(Color.accentColor.opacity(appState.authenticationState == .authenticating ? 0.3: 1))
+                .background(Color.accentColor)
                 .cornerRadius(10)
             }
-            .disabled(!formIsValid)
+            .disabled(!formIsValid || appState.authenticationState == .authenticating)
             
             Button("Or \(mode == .signup ? "Login": "Sign Up")") {
                 withAnimation {

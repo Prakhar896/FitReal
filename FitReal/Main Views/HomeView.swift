@@ -14,7 +14,7 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                Text("Hello, World!")
+                Button("Sign Out", action: appState.signOut)
             }
             .navigationTitle("Home")
         }
