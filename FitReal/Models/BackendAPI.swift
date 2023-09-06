@@ -26,7 +26,10 @@ struct BackendAPI {
         
         var bodyData: Data? = nil
         do {
-            bodyData = try JSONEncoder().encode(appUser)
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .iso8601
+            
+            bodyData = try encoder.encode(appUser)
         } catch {
             print("CREATEUSER ERROR: \(error.localizedDescription)")
             return false

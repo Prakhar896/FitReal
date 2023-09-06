@@ -12,7 +12,7 @@ struct FRUser: Codable {
     var fireAuthID: String
     var friends: [String]
     var friendRequests: [String]
-    var schedule: Schedule
+    var nextWorkout: Date
     var activities: [String: Activity]
     
     var extractedActivities: [Activity] {
@@ -22,16 +22,6 @@ struct FRUser: Codable {
         }
         return returnValue
     }
-}
-
-struct Schedule: Codable {
-    var monday: [String]
-    var tuesday: [String]
-    var wednesday: [String]
-    var thursday: [String]
-    var friday: [String]
-    var saturday: [String]
-    var sunday: [String]
 }
 
 struct Activity: Codable, Identifiable {

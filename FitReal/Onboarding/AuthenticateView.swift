@@ -208,7 +208,7 @@ struct AuthenticateView: View {
             errorMessage = "An unknown error occurred. Please try again."
             return false
         }
-        appState.appUser = FRUser(name: name, fireAuthID: user.uid, friends: [], friendRequests: [], schedule: Schedule(monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: []), activities: [:])
+        appState.appUser = FRUser(name: name, fireAuthID: user.uid, friends: [], friendRequests: [], nextWorkout: Date.now.addingTimeInterval(600), activities: [:])
         
         let backendResponse = await appState.backend.createUser(appUser: appState.appUser!)
         if backendResponse {
