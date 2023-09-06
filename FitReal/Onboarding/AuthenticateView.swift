@@ -21,14 +21,22 @@ struct AuthenticateView: View {
     
     @State var mode: AuthenticationMode = .signup
     
+    var title: String {
+        mode == .signup ? "Sign Up": "Login"
+    }
+    
     var formIsValid: Bool {
-        return !(onboardingVM.email.isEmpty || onboardingVM.password.isEmpty || onboardingVM.confirmPassword.isEmpty)
+        if mode == .signup {
+            return !(onboardingVM.email.isEmpty || onboardingVM.password.isEmpty || onboardingVM.confirmPassword.isEmpty)
+        } else {
+            return !(onboardingVM.email.isEmpty || onboardingVM.password.isEmpty)
+        }
     }
     
     var body: some View {
         VStack {
             VStack(spacing: 15) {
-                Text(mode == .signup ? "Sign Up": "Login")
+                Text(title)
                     .font(.largeTitle.bold())
                 Text("\(mode == .signup ? "Start": "Continue") your journey.")
                     .font(.headline)
@@ -41,6 +49,7 @@ struct AuthenticateView: View {
                 VStack(alignment: .leading) {
                     Text("Email")
                     TextField("Enter your email here", text: $onboardingVM.email)
+                        .focused($emailIsFocused)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
                         .frame(minHeight: 44)
@@ -49,17 +58,21 @@ struct AuthenticateView: View {
                 VStack(alignment: .leading) {
                     Text("Password")
                     SecureField("Enter your password here", text: $onboardingVM.password)
+                        .focused($passwordIsFocused)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
                         .frame(minHeight: 44)
                 }
                 
-                VStack(alignment: .leading) {
-                    Text("Confirm Password")
-                    SecureField("Re-enter your password", text: $onboardingVM.confirmPassword)
-                        .textFieldStyle(.roundedBorder)
-                        .textInputAutocapitalization(.never)
-                        .frame(minHeight: 44)
+                if mode == .signup {
+                    VStack(alignment: .leading) {
+                        Text("Confirm Password")
+                        SecureField("Re-enter your password", text: $onboardingVM.confirmPassword)
+                            .focused($confirmPasswordIsFocused)
+                            .textFieldStyle(.roundedBorder)
+                            .textInputAutocapitalization(.never)
+                            .frame(minHeight: 44)
+                    }
                 }
             }
             
@@ -72,22 +85,30 @@ struct AuthenticateView: View {
                 .padding()
             
             Button {
-                if onboardingVM.password != onboardingVM.confirmPassword {
+                if onboardingVM.password != onboardingVM.confirmPassword && mode == .signup {
                     errorMessage = "Password and Confirm Password fields do not match. Please try again."
                     return
                 }
                 
                 Task {
-                    let response = await onboardingVM.signUpWithEmailPassword()
-                    if response.starts(with: "Error") {
-                        errorMessage = response[("Error: ".count)...]
+                    var response: String? = nil
+                    if mode == .signup {
+                        response = await onboardingVM.signUpWithEmailPassword()
                     } else {
-                        errorMessage = ""
+                        response = await onboardingVM.signInWithEmailPassword()
+                    }
+                    
+                    if let response = response {
+                        if response.starts(with: "Error") {
+                            errorMessage = response[("Error: ".count)...]
+                        } else {
+                            errorMessage = ""
+                        }
                     }
                 }
             } label: {
                 ZStack {
-                    Text(onboardingVM.authenticationState == .authenticating ? "": "Sign Up")
+                    Text(onboardingVM.authenticationState == .authenticating ? "": title)
                         .bold()
                         .foregroundColor(.black)
                     
@@ -102,12 +123,17 @@ struct AuthenticateView: View {
             .disabled(!formIsValid)
             
             Button("Or \(mode == .signup ? "Login": "Sign Up")") {
-                if mode == .signup {
-                    mode = .login
-                } else {
-                    mode = .signup
+                withAnimation {
+                    if mode == .signup {
+                        mode = .login
+                    } else {
+                        mode = .signup
+                    }
+                    onboardingVM.password = ""
+                    onboardingVM.confirmPassword = ""
                 }
             }
+            .padding()
             
             Spacer()
         }
