@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FRUser {
+struct FRUser: Codable {
     var firstName: String
     var lastName: String
     var age: Int
@@ -17,7 +17,7 @@ struct FRUser {
     var activities: [String: Activity]
 }
 
-struct Schedule {
+struct Schedule: Codable {
     var monday: [String]
     var tuesday: [String]
     var wednesday: [String]
@@ -27,7 +27,7 @@ struct Schedule {
     var sunday: [String]
 }
 
-struct Activity {
+struct Activity: Codable {
     var type: String
     var stravaID: String
     var caption: String

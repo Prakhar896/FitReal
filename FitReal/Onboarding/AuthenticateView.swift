@@ -56,6 +56,7 @@ struct AuthenticateView: View {
                         .focused($emailIsFocused)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
                         .textContentType(.emailAddress)
                         .frame(minHeight: 44)
                 }

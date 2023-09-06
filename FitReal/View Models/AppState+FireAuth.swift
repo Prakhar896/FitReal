@@ -27,6 +27,26 @@ extension AppState {
             let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
             user = authResult.user
             
+            // fetch user details from backend server
+            // temporarily, load sample data
+            appUser = FRUser(
+                firstName: "John",
+                lastName: "Appleseed",
+                age: 17,
+                fireAuthID: user!.uid,
+                friendRequests: [],
+                schedule: Schedule(
+                    monday: [],
+                    tuesday: [],
+                    wednesday: [],
+                    thursday: [],
+                    friday: [],
+                    saturday: [],
+                    sunday: ["7-9"]
+                ),
+                activities: [:]
+            )
+            
             print("User \(authResult.user.uid) signed in")
             authenticationState = .authenticated
             return "Success"
@@ -43,6 +63,26 @@ extension AppState {
             }
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             user = authResult.user
+            
+            // create FRUser and submit to backend server
+            // temporarily, load sample data
+            appUser = FRUser(
+                firstName: "John",
+                lastName: "Appleseed",
+                age: 17,
+                fireAuthID: user!.uid,
+                friendRequests: [],
+                schedule: Schedule(
+                    monday: [],
+                    tuesday: [],
+                    wednesday: [],
+                    thursday: [],
+                    friday: [],
+                    saturday: [],
+                    sunday: ["7-9"]
+                ),
+                activities: [:]
+            )
             
             print("User \(authResult.user.uid) signed in")
             authenticationState = .authenticated
