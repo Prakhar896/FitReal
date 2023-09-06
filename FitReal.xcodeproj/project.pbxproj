@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E23322682AA826F400000A95 /* AuthenticationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23322672AA826F400000A95 /* AuthenticationStatus.swift */; };
 		E233226B2AA8273800000A95 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233226A2AA8273800000A95 /* RootView.swift */; };
+		E233226D2AA8484E00000A95 /* AuthenticateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233226C2AA8484E00000A95 /* AuthenticateView.swift */; };
 		E2CF2C562AA7925D001B27DA /* FitRealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C552AA7925D001B27DA /* FitRealApp.swift */; };
 		E2CF2C582AA7925D001B27DA /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C572AA7925D001B27DA /* WelcomeView.swift */; };
 		E2CF2C5A2AA7925E001B27DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF2C592AA7925E001B27DA /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		E23322672AA826F400000A95 /* AuthenticationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStatus.swift; sourceTree = "<group>"; };
 		E233226A2AA8273800000A95 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		E233226C2AA8484E00000A95 /* AuthenticateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateView.swift; sourceTree = "<group>"; };
 		E2CF2C522AA7925D001B27DA /* FitReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CF2C552AA7925D001B27DA /* FitRealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitRealApp.swift; sourceTree = "<group>"; };
 		E2CF2C572AA7925D001B27DA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				E2CF2C572AA7925D001B27DA /* WelcomeView.swift */,
 				E23322672AA826F400000A95 /* AuthenticationStatus.swift */,
 				E2CF2C902AA7FCAD001B27DA /* OnboardingViewModel.swift */,
+				E233226C2AA8484E00000A95 /* AuthenticateView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				E2CF2C912AA7FCAD001B27DA /* OnboardingViewModel.swift in Sources */,
 				E2CF2C562AA7925D001B27DA /* FitRealApp.swift in Sources */,
 				E233226B2AA8273800000A95 /* RootView.swift in Sources */,
+				E233226D2AA8484E00000A95 /* AuthenticateView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

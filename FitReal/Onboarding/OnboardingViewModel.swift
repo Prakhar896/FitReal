@@ -30,31 +30,33 @@ import FirebaseAuth
         }
     }
     
-    func signInWithEmailPassword() async -> Bool {
+    func signInWithEmailPassword() async -> String {
         do {
+            authenticationState = .authenticating
             let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
             user = authResult.user
             
             print("User \(authResult.user.uid) signed in")
             authenticationState = .authenticated
-            return true
+            return "Success"
         } catch {
-            print(error.localizedDescription)
-            return false
+            authenticationState = .unauthenticated
+            return "Error: \(error.localizedDescription)"
         }
     }
     
-    func signUpWithEmailPassword() async -> Bool {
+    func signUpWithEmailPassword() async -> String {
         do {
+            authenticationState = .authenticating
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             user = authResult.user
             
             print("User \(authResult.user.uid) signed in")
             authenticationState = .authenticated
-            return true
+            return "Success"
         } catch {
-            print(error.localizedDescription)
-            return false
+            authenticationState = .unauthenticated
+            return "Error: \(error.localizedDescription)"
         }
     }
     
@@ -66,14 +68,13 @@ import FirebaseAuth
         }
     }
     
-    func deleteAccount() async -> Bool {
+    func deleteAccount() async -> String {
         do {
             try await user?.delete()
             authenticationState = .unauthenticated
-            return true
+            return "Success"
         } catch {
-            print(error.localizedDescription)
-            return false
+            return "Error: \(error.localizedDescription)"
         }
     }
 }
