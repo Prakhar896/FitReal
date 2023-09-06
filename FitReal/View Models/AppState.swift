@@ -12,6 +12,7 @@ import FirebaseAuth
 @MainActor class AppState: ObservableObject {
     @Published var user: User? = nil
     @Published var appUser: FRUser? = nil
+    @Published var nextWorkoutActivated = false
     
     @Published var authenticationState: AuthenticationStatus = .unauthenticated
     
@@ -21,11 +22,13 @@ import FirebaseAuth
     
     init(debug: Bool = false) {
         backend = BackendAPI()
-        registerAuthStateHandler()
         
+        registerAuthStateHandler()
         if debug {
             appUser = AppState.loadSampleAppUserData(fireAuthID: "DEBUGID")
         }
+        
+        nextWorkoutActivated = UserDefaults.standard.bool(forKey: "NextWorkoutActivated")
     }
     
     var authStateHandle: AuthStateDidChangeListenerHandle?

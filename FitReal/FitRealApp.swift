@@ -6,14 +6,23 @@
 //
 
 import SwiftUI
+import UserNotifications
 import FirebaseCore
 import FirebaseAuth
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
         FirebaseApp.configure()
+        
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { result, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
         return true
     }
 }

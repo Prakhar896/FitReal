@@ -11,29 +11,41 @@ import FirebaseAuth
 struct HomeView: View {
     @ObservedObject var appState: AppState
     
+    @State var showingConfigureNextWorkoutSheet = false
+    
     var appUser: FRUser? {
         appState.appUser
     }
     
     var body: some View {
         NavigationView {
-            if let appUser = appUser {
-                ScrollView {
-                    ForEach(appUser.extractedActivities) { activity in
-                        ActivityView(appUser: appUser, activityID: activity.id)
-                    }
-                }
-                .padding()
-                .navigationTitle("Home")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Sign Out") {
-                            appState.signOut()
+            ZStack {
+                if let appUser = appUser {
+                    ScrollView {
+                        ForEach(appUser.extractedActivities) { activity in
+                            ActivityView(appUser: appUser, activityID: activity.id)
                         }
                     }
+                    .padding()
+                    .navigationTitle("Home")
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Sign Out") {
+                                appState.signOut()
+                            }
+                        }
+                    }
+                } else {
+                    Text("Error")
                 }
-            } else {
-                Text("Error")
+            }
+            .onAppear {
+                if !appState.nextWorkoutActivated {
+                    showingConfigureNextWorkoutSheet = true
+                }
+            }
+            .sheet(isPresented: $showingConfigureNextWorkoutSheet) {
+                Text("Configure your next workout....")
             }
         }
         .preferredColorScheme(.dark)
