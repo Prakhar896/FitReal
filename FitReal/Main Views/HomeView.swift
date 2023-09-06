@@ -25,6 +25,15 @@ struct HomeView: View {
                 }
                 .padding()
                 .navigationTitle("Home")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Test") {
+                            Task {
+                                await BackendAPI().createUser(appUser: appUser)
+                            }
+                        }
+                    }
+                }
             } else {
                 Text("Error")
             }

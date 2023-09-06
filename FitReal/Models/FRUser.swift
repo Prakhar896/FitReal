@@ -12,6 +12,7 @@ struct FRUser: Codable {
     var lastName: String
     var age: Int
     var fireAuthID: String
+    var friends: [String]
     var friendRequests: [String]
     var schedule: Schedule
     var activities: [String: Activity]

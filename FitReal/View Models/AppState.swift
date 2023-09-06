@@ -34,6 +34,7 @@ import FirebaseAuth
             lastName: "Appleseed",
             age: 17,
             fireAuthID: fireAuthID,
+            friends: [],
             friendRequests: [],
             schedule: Schedule(
                 monday: [],
