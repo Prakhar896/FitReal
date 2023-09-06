@@ -46,4 +46,40 @@ struct BackendAPI {
             return false
         }
     }
+    
+    func fetchUser(fireAuthID: String) async -> FRUser? {
+        let endpointURLString = serverURLString.appending("/fetch_user")
+        guard let url = URL(string: endpointURLString) else {
+            print("CREATEUSER ERROR: Bad URL: \(endpointURLString)")
+            return nil
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(apiKey, forHTTPHeaderField: "APIKey")
+        
+        let body = ["userID": fireAuthID]
+        var bodyData: Data? = nil
+        
+        do {
+            bodyData = try JSONEncoder().encode(body)
+        } catch {
+            print("FETCHUSER ERROR: \(error.localizedDescription)")
+            return nil
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.upload(for: request, from: bodyData!)
+            
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            
+            let decodedAppUser = try decoder.decode(FRUser.self, from: data)
+            return decodedAppUser
+        } catch {
+            print("FETCHUSER ERROR: \(error.localizedDescription)")
+            return nil
+        }
+    }
 }

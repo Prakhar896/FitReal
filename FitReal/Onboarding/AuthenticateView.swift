@@ -130,7 +130,12 @@ struct AuthenticateView: View {
                     } else {
                         let fireAuthResponse = await signInFireAuthUser()
                         if fireAuthResponse {
-                            appState.authenticationState = .authenticated
+                            let backendResponse = await fetchBackendUser()
+                            if backendResponse {
+                                appState.authenticationState = .authenticated
+                            } else {
+                                appState.authenticationState = .unauthenticated
+                            }
                         } else {
                             appState.authenticationState = .unauthenticated
                         }
@@ -199,23 +204,7 @@ struct AuthenticateView: View {
                 return true
             }
         } else {
-            return false
-        }
-    }
-    
-    func createBackendUser() async -> Bool {
-        guard let user = appState.user else {
-            errorMessage = "An unknown error occurred. Please try again."
-            return false
-        }
-        appState.appUser = FRUser(name: name, fireAuthID: user.uid, friends: [], friendRequests: [], nextWorkout: Date.now.addingTimeInterval(600), activities: [:])
-        
-        let backendResponse = await appState.backend.createUser(appUser: appState.appUser!)
-        if backendResponse {
-            errorMessage = ""
-            return true
-        } else {
-            errorMessage = "An error occurred. Please try again."
+            errorMessage = "An unknown error occurred in signing you up. Please try again."
             return false
         }
     }
@@ -233,7 +222,40 @@ struct AuthenticateView: View {
                 return true
             }
         } else {
-            errorMessage = "An unknown error occurred. Please try again."
+            errorMessage = "An unknown error occurred in signing you in. Please try again."
+            return false
+        }
+    }
+    
+    func createBackendUser() async -> Bool {
+        guard let user = appState.user else {
+            errorMessage = "An unknown error occurred in creating your account on our server. Please try again."
+            return false
+        }
+        appState.appUser = FRUser(name: name, fireAuthID: user.uid, friends: [], friendRequests: [], nextWorkout: Date.now.addingTimeInterval(600), activities: [:])
+        
+        let backendResponse = await appState.backend.createUser(appUser: appState.appUser!)
+        if backendResponse {
+            errorMessage = ""
+            return true
+        } else {
+            errorMessage = "An error occurred. Please try again."
+            return false
+        }
+    }
+    
+    func fetchBackendUser() async -> Bool {
+        guard let user = appState.user else {
+            errorMessage = "An unknown error occurred in fetching your account details. Please try again."
+            return false
+        }
+        
+        let response = await appState.backend.fetchUser(fireAuthID: user.uid)
+        if let response = response {
+            appState.appUser = response
+            return true
+        } else {
+            errorMessage = "Failed to fetch your account details from our server. Please try again."
             return false
         }
     }

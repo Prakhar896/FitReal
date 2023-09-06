@@ -17,9 +17,9 @@ extension AppState {
                 self.authenticationState = user == nil ? .unauthenticated: .authenticated
                 
                 // temporarily, load sample data
-                if user != nil {
-                    self.appUser = AppState.loadSampleAppUserData(fireAuthID: user?.uid ?? "No Fire Auth ID")
-                }
+//                if user != nil {
+//                    self.appUser = AppState.loadSampleAppUserData(fireAuthID: user?.uid ?? "No Fire Auth ID")
+//                }
             })
         }
     }
