@@ -11,6 +11,8 @@
 		E233226B2AA8273800000A95 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233226A2AA8273800000A95 /* RootView.swift */; };
 		E233226D2AA8484E00000A95 /* AuthenticateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233226C2AA8484E00000A95 /* AuthenticateView.swift */; };
 		E233226F2AA8509000000A95 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233226E2AA8509000000A95 /* Extensions.swift */; };
+		E23322712AA85D3B00000A95 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23322702AA85D3B00000A95 /* HomeView.swift */; };
+		E23322782AA8658600000A95 /* AppState+FireAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23322772AA8658600000A95 /* AppState+FireAuth.swift */; };
 		E2CF2C562AA7925D001B27DA /* FitRealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C552AA7925D001B27DA /* FitRealApp.swift */; };
 		E2CF2C582AA7925D001B27DA /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C572AA7925D001B27DA /* WelcomeView.swift */; };
 		E2CF2C5A2AA7925E001B27DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF2C592AA7925E001B27DA /* Assets.xcassets */; };
@@ -26,7 +28,7 @@
 		E2CF2C8B2AA7F86B001B27DA /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2CF2C8A2AA7F86B001B27DA /* FirebaseDatabase */; };
 		E2CF2C8D2AA7F86B001B27DA /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E2CF2C8C2AA7F86B001B27DA /* FirebaseDatabaseSwift */; };
 		E2CF2C8F2AA7F86B001B27DA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E2CF2C8E2AA7F86B001B27DA /* FirebaseStorage */; };
-		E2CF2C912AA7FCAD001B27DA /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C902AA7FCAD001B27DA /* OnboardingViewModel.swift */; };
+		E2CF2C912AA7FCAD001B27DA /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C902AA7FCAD001B27DA /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		E233226A2AA8273800000A95 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E233226C2AA8484E00000A95 /* AuthenticateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateView.swift; sourceTree = "<group>"; };
 		E233226E2AA8509000000A95 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E23322702AA85D3B00000A95 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E23322772AA8658600000A95 /* AppState+FireAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+FireAuth.swift"; sourceTree = "<group>"; };
 		E2CF2C522AA7925D001B27DA /* FitReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CF2C552AA7925D001B27DA /* FitRealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitRealApp.swift; sourceTree = "<group>"; };
 		E2CF2C572AA7925D001B27DA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -62,7 +66,7 @@
 		E2CF2C702AA7925E001B27DA /* FitRealUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitRealUITests.swift; sourceTree = "<group>"; };
 		E2CF2C722AA7925E001B27DA /* FitRealUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitRealUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E2CF2C7F2AA7F780001B27DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E2CF2C902AA7FCAD001B27DA /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		E2CF2C902AA7FCAD001B27DA /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +105,34 @@
 			isa = PBXGroup;
 			children = (
 				E2CF2C572AA7925D001B27DA /* WelcomeView.swift */,
-				E23322672AA826F400000A95 /* AuthenticationStatus.swift */,
-				E2CF2C902AA7FCAD001B27DA /* OnboardingViewModel.swift */,
 				E233226C2AA8484E00000A95 /* AuthenticateView.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		E23322722AA85D4E00000A95 /* Main Views */ = {
+			isa = PBXGroup;
+			children = (
+				E23322702AA85D3B00000A95 /* HomeView.swift */,
+			);
+			path = "Main Views";
+			sourceTree = "<group>";
+		};
+		E23322732AA85D6F00000A95 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E23322672AA826F400000A95 /* AuthenticationStatus.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E23322742AA85DCB00000A95 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2CF2C902AA7FCAD001B27DA /* AppState.swift */,
+				E23322772AA8658600000A95 /* AppState+FireAuth.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		E2CF2C492AA7925D001B27DA = {
@@ -131,9 +158,12 @@
 		E2CF2C542AA7925D001B27DA /* FitReal */ = {
 			isa = PBXGroup;
 			children = (
+				E23322732AA85D6F00000A95 /* Models */,
+				E23322742AA85DCB00000A95 /* View Models */,
 				E2CF2C552AA7925D001B27DA /* FitRealApp.swift */,
 				E233226A2AA8273800000A95 /* RootView.swift */,
 				E233226E2AA8509000000A95 /* Extensions.swift */,
+				E23322722AA85D4E00000A95 /* Main Views */,
 				E23322692AA826FD00000A95 /* Onboarding */,
 				E2CF2C592AA7925E001B27DA /* Assets.xcassets */,
 				E2CF2C7F2AA7F780001B27DA /* GoogleService-Info.plist */,
@@ -312,11 +342,13 @@
 			files = (
 				E2CF2C582AA7925D001B27DA /* WelcomeView.swift in Sources */,
 				E23322682AA826F400000A95 /* AuthenticationStatus.swift in Sources */,
-				E2CF2C912AA7FCAD001B27DA /* OnboardingViewModel.swift in Sources */,
+				E2CF2C912AA7FCAD001B27DA /* AppState.swift in Sources */,
 				E2CF2C562AA7925D001B27DA /* FitRealApp.swift in Sources */,
 				E233226B2AA8273800000A95 /* RootView.swift in Sources */,
+				E23322712AA85D3B00000A95 /* HomeView.swift in Sources */,
 				E233226D2AA8484E00000A95 /* AuthenticateView.swift in Sources */,
 				E233226F2AA8509000000A95 /* Extensions.swift in Sources */,
+				E23322782AA8658600000A95 /* AppState+FireAuth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

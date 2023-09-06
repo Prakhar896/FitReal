@@ -12,12 +12,16 @@ struct AuthenticateView: View {
         case signup, login
     }
     
-    @StateObject var onboardingVM: OnboardingViewModel = OnboardingViewModel()
-    @State private var errorMessage: String = ""
+    @ObservedObject var appState: AppState
+    @State var email: String = ""
+    @State var password: String = ""
+    @State var confirmPassword: String = ""
     
     @FocusState var emailIsFocused
     @FocusState var passwordIsFocused
     @FocusState var confirmPasswordIsFocused
+    
+    @State private var errorMessage: String = ""
     
     @State var mode: AuthenticationMode = .signup
     
@@ -27,9 +31,9 @@ struct AuthenticateView: View {
     
     var formIsValid: Bool {
         if mode == .signup {
-            return !(onboardingVM.email.isEmpty || onboardingVM.password.isEmpty || onboardingVM.confirmPassword.isEmpty)
+            return !(email.isEmpty || password.isEmpty || confirmPassword.isEmpty)
         } else {
-            return !(onboardingVM.email.isEmpty || onboardingVM.password.isEmpty)
+            return !(email.isEmpty || password.isEmpty)
         }
     }
     
@@ -48,7 +52,7 @@ struct AuthenticateView: View {
             VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading) {
                     Text("Email")
-                    TextField("Enter your email here", text: $onboardingVM.email)
+                    TextField("Enter your email here", text: $email)
                         .focused($emailIsFocused)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
@@ -57,7 +61,7 @@ struct AuthenticateView: View {
                 
                 VStack(alignment: .leading) {
                     Text("Password")
-                    SecureField("Enter your password here", text: $onboardingVM.password)
+                    SecureField("Enter your password here", text: $password)
                         .focused($passwordIsFocused)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
@@ -67,7 +71,7 @@ struct AuthenticateView: View {
                 if mode == .signup {
                     VStack(alignment: .leading) {
                         Text("Confirm Password")
-                        SecureField("Re-enter your password", text: $onboardingVM.confirmPassword)
+                        SecureField("Re-enter your password", text: $confirmPassword)
                             .focused($confirmPasswordIsFocused)
                             .textFieldStyle(.roundedBorder)
                             .textInputAutocapitalization(.never)
@@ -85,7 +89,7 @@ struct AuthenticateView: View {
                 .padding()
             
             Button {
-                if onboardingVM.password != onboardingVM.confirmPassword && mode == .signup {
+                if password != confirmPassword && mode == .signup {
                     errorMessage = "Password and Confirm Password fields do not match. Please try again."
                     return
                 }
@@ -93,9 +97,9 @@ struct AuthenticateView: View {
                 Task {
                     var response: String? = nil
                     if mode == .signup {
-                        response = await onboardingVM.signUpWithEmailPassword()
+                        response = await appState.signUp(withEmail: email, password: password)
                     } else {
-                        response = await onboardingVM.signInWithEmailPassword()
+                        response = await appState.signIn(withEmail: email, password: password)
                     }
                     
                     if let response = response {
@@ -108,16 +112,16 @@ struct AuthenticateView: View {
                 }
             } label: {
                 ZStack {
-                    Text(onboardingVM.authenticationState == .authenticating ? "": title)
+                    Text(appState.authenticationState == .authenticating ? "": title)
                         .bold()
                         .foregroundColor(.black)
                     
-                    if onboardingVM.authenticationState == .authenticating {
+                    if appState.authenticationState == .authenticating {
                         ProgressView()
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width * 0.8, height: 44)
-                .background(Color.accentColor.opacity(onboardingVM.authenticationState == .authenticating ? 0.3: 1))
+                .background(Color.accentColor.opacity(appState.authenticationState == .authenticating ? 0.3: 1))
                 .cornerRadius(10)
             }
             .disabled(!formIsValid)
@@ -129,8 +133,8 @@ struct AuthenticateView: View {
                     } else {
                         mode = .signup
                     }
-                    onboardingVM.password = ""
-                    onboardingVM.confirmPassword = ""
+                    password = ""
+                    confirmPassword = ""
                 }
             }
             .padding()
@@ -157,7 +161,7 @@ struct AuthenticateView: View {
 
 struct AuthenticateView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticateView()
+        AuthenticateView(appState: AppState())
             .preferredColorScheme(.dark)
     }
 }

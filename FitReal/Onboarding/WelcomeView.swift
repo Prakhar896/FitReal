@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    @ObservedObject var appState: AppState
+    
     @State private var showingIntro: Bool = false
     @State private var introOpacity = 0.0
     
@@ -49,7 +51,7 @@ struct WelcomeView: View {
                             .bold()
                         
                         NavigationLink {
-                            AuthenticateView()
+                            AuthenticateView(appState: appState)
                         } label: {
                             Text("Get Started")
                                 .bold()
@@ -83,7 +85,7 @@ struct WelcomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView(debug: true)
+        WelcomeView(appState: AppState(), debug: true)
             .preferredColorScheme(.dark)
     }
 }
