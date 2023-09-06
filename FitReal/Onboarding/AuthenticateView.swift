@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct AuthenticateView: View {
+    enum AuthenticationMode {
+        case signup, login
+    }
+    
     @StateObject var onboardingVM: OnboardingViewModel = OnboardingViewModel()
     @State private var errorMessage: String = ""
+    
+    @FocusState var emailIsFocused
+    @FocusState var passwordIsFocused
+    @FocusState var confirmPasswordIsFocused
+    
+    @State var mode: AuthenticationMode = .signup
     
     var formIsValid: Bool {
         return !(onboardingVM.email.isEmpty || onboardingVM.password.isEmpty || onboardingVM.confirmPassword.isEmpty)
@@ -18,9 +28,9 @@ struct AuthenticateView: View {
     var body: some View {
         VStack {
             VStack(spacing: 15) {
-                Text("Sign Up")
+                Text(mode == .signup ? "Sign Up": "Login")
                     .font(.largeTitle.bold())
-                Text("Start your journey.")
+                Text("\(mode == .signup ? "Start": "Continue") your journey.")
                     .font(.headline)
             }
             .padding(.top, 50)
@@ -91,9 +101,31 @@ struct AuthenticateView: View {
             }
             .disabled(!formIsValid)
             
+            Button("Or \(mode == .signup ? "Login": "Sign Up")") {
+                if mode == .signup {
+                    mode = .login
+                } else {
+                    mode = .signup
+                }
+            }
+            
             Spacer()
         }
         .padding(.horizontal, 20)
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack {
+                    Button("Done", action: dismiss)
+                        .padding(.leading, UIScreen.main.bounds.width * 0.8)
+                }
+            }
+        }
+    }
+    
+    func dismiss() {
+        emailIsFocused = false
+        passwordIsFocused = false
+        confirmPasswordIsFocused = false
     }
 }
 
