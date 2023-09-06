@@ -57,4 +57,23 @@ import FirebaseAuth
             return false
         }
     }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func deleteAccount() async -> Bool {
+        do {
+            try await user?.delete()
+            authenticationState = .unauthenticated
+            return true
+        } catch {
+            print(error.localizedDescription)
+            return false
+        }
+    }
 }
