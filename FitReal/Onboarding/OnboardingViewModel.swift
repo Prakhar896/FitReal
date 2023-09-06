@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 import FirebaseAuth
 
 @MainActor class OnboardingViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
+    @Published var confirmPassword: String = ""
     @Published var user: User? = nil
     
     @Published var authenticationState: AuthenticationStatus = .unauthenticated
@@ -32,7 +34,9 @@ import FirebaseAuth
     
     func signInWithEmailPassword() async -> String {
         do {
-            authenticationState = .authenticating
+            withAnimation {
+                authenticationState = .authenticating
+            }
             let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
             user = authResult.user
             
@@ -47,7 +51,9 @@ import FirebaseAuth
     
     func signUpWithEmailPassword() async -> String {
         do {
-            authenticationState = .authenticating
+            withAnimation {
+                authenticationState = .authenticating
+            }
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             user = authResult.user
             
@@ -63,6 +69,9 @@ import FirebaseAuth
     func signOut() {
         do {
             try Auth.auth().signOut()
+            withAnimation {
+                authenticationState = .unauthenticated
+            }
         } catch {
             print(error.localizedDescription)
         }

@@ -52,6 +52,7 @@ struct WelcomeView: View {
                             AuthenticateView()
                         } label: {
                             Text("Get Started")
+                                .bold()
                                 .foregroundColor(.black)
                                 .frame(width: UIScreen.main.bounds.width * 0.8, height: 44)
                                 .background(Color.accentColor)

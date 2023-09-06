@@ -10,6 +10,7 @@
 		E23322682AA826F400000A95 /* AuthenticationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23322672AA826F400000A95 /* AuthenticationStatus.swift */; };
 		E233226B2AA8273800000A95 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233226A2AA8273800000A95 /* RootView.swift */; };
 		E233226D2AA8484E00000A95 /* AuthenticateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233226C2AA8484E00000A95 /* AuthenticateView.swift */; };
+		E233226F2AA8509000000A95 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233226E2AA8509000000A95 /* Extensions.swift */; };
 		E2CF2C562AA7925D001B27DA /* FitRealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C552AA7925D001B27DA /* FitRealApp.swift */; };
 		E2CF2C582AA7925D001B27DA /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C572AA7925D001B27DA /* WelcomeView.swift */; };
 		E2CF2C5A2AA7925E001B27DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF2C592AA7925E001B27DA /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		E23322672AA826F400000A95 /* AuthenticationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStatus.swift; sourceTree = "<group>"; };
 		E233226A2AA8273800000A95 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E233226C2AA8484E00000A95 /* AuthenticateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateView.swift; sourceTree = "<group>"; };
+		E233226E2AA8509000000A95 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E2CF2C522AA7925D001B27DA /* FitReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CF2C552AA7925D001B27DA /* FitRealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitRealApp.swift; sourceTree = "<group>"; };
 		E2CF2C572AA7925D001B27DA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				E2CF2C552AA7925D001B27DA /* FitRealApp.swift */,
 				E233226A2AA8273800000A95 /* RootView.swift */,
+				E233226E2AA8509000000A95 /* Extensions.swift */,
 				E23322692AA826FD00000A95 /* Onboarding */,
 				E2CF2C592AA7925E001B27DA /* Assets.xcassets */,
 				E2CF2C7F2AA7F780001B27DA /* GoogleService-Info.plist */,
@@ -313,6 +316,7 @@
 				E2CF2C562AA7925D001B27DA /* FitRealApp.swift in Sources */,
 				E233226B2AA8273800000A95 /* RootView.swift in Sources */,
 				E233226D2AA8484E00000A95 /* AuthenticateView.swift in Sources */,
+				E233226F2AA8509000000A95 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
