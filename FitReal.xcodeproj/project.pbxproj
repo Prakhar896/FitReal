@@ -14,7 +14,7 @@
 		E23322712AA85D3B00000A95 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23322702AA85D3B00000A95 /* HomeView.swift */; };
 		E23322782AA8658600000A95 /* AppState+FireAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23322772AA8658600000A95 /* AppState+FireAuth.swift */; };
 		E233227D2AA8766600000A95 /* AppState+Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233227C2AA8766600000A95 /* AppState+Backend.swift */; };
-		E233227F2AA8767300000A95 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233227E2AA8767300000A95 /* User.swift */; };
+		E233227F2AA8767300000A95 /* FRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233227E2AA8767300000A95 /* FRUser.swift */; };
 		E2CF2C562AA7925D001B27DA /* FitRealApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C552AA7925D001B27DA /* FitRealApp.swift */; };
 		E2CF2C582AA7925D001B27DA /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF2C572AA7925D001B27DA /* WelcomeView.swift */; };
 		E2CF2C5A2AA7925E001B27DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF2C592AA7925E001B27DA /* Assets.xcassets */; };
@@ -58,7 +58,7 @@
 		E23322702AA85D3B00000A95 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E23322772AA8658600000A95 /* AppState+FireAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+FireAuth.swift"; sourceTree = "<group>"; };
 		E233227C2AA8766600000A95 /* AppState+Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Backend.swift"; sourceTree = "<group>"; };
-		E233227E2AA8767300000A95 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E233227E2AA8767300000A95 /* FRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRUser.swift; sourceTree = "<group>"; };
 		E2CF2C522AA7925D001B27DA /* FitReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CF2C552AA7925D001B27DA /* FitRealApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitRealApp.swift; sourceTree = "<group>"; };
 		E2CF2C572AA7925D001B27DA /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				E23322672AA826F400000A95 /* AuthenticationStatus.swift */,
-				E233227E2AA8767300000A95 /* User.swift */,
+				E233227E2AA8767300000A95 /* FRUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,7 +356,7 @@
 				E233226D2AA8484E00000A95 /* AuthenticateView.swift in Sources */,
 				E233226F2AA8509000000A95 /* Extensions.swift in Sources */,
 				E23322782AA8658600000A95 /* AppState+FireAuth.swift in Sources */,
-				E233227F2AA8767300000A95 /* User.swift in Sources */,
+				E233227F2AA8767300000A95 /* FRUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
