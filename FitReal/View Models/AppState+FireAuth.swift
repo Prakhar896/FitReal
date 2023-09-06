@@ -15,6 +15,11 @@ extension AppState {
             authStateHandle = Auth.auth().addStateDidChangeListener({ auth, user in
                 self.user = user
                 self.authenticationState = user == nil ? .unauthenticated: .authenticated
+                
+                // temporarily, load sample data
+                if user != nil {
+                    self.appUser = AppState.loadSampleAppUserData(fireAuthID: user?.uid ?? "No Fire Auth ID")
+                }
             })
         }
     }
@@ -28,24 +33,6 @@ extension AppState {
             user = authResult.user
             
             // fetch user details from backend server
-            // temporarily, load sample data
-            appUser = FRUser(
-                firstName: "John",
-                lastName: "Appleseed",
-                age: 17,
-                fireAuthID: user!.uid,
-                friendRequests: [],
-                schedule: Schedule(
-                    monday: [],
-                    tuesday: [],
-                    wednesday: [],
-                    thursday: [],
-                    friday: [],
-                    saturday: [],
-                    sunday: ["7-9"]
-                ),
-                activities: [:]
-            )
             
             print("User \(authResult.user.uid) signed in")
             authenticationState = .authenticated
@@ -65,24 +52,6 @@ extension AppState {
             user = authResult.user
             
             // create FRUser and submit to backend server
-            // temporarily, load sample data
-            appUser = FRUser(
-                firstName: "John",
-                lastName: "Appleseed",
-                age: 17,
-                fireAuthID: user!.uid,
-                friendRequests: [],
-                schedule: Schedule(
-                    monday: [],
-                    tuesday: [],
-                    wednesday: [],
-                    thursday: [],
-                    friday: [],
-                    saturday: [],
-                    sunday: ["7-9"]
-                ),
-                activities: [:]
-            )
             
             print("User \(authResult.user.uid) signed in")
             authenticationState = .authenticated
@@ -99,6 +68,7 @@ extension AppState {
             withAnimation {
                 authenticationState = .unauthenticated
             }
+            appUser = nil
         } catch {
             print(error.localizedDescription)
         }
@@ -108,6 +78,7 @@ extension AppState {
         do {
             try await user?.delete()
             authenticationState = .unauthenticated
+            appUser = nil
             return "Success"
         } catch {
             return "Error: \(error.localizedDescription)"

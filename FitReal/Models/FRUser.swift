@@ -15,6 +15,14 @@ struct FRUser: Codable {
     var friendRequests: [String]
     var schedule: Schedule
     var activities: [String: Activity]
+    
+    var extractedActivities: [Activity] {
+        var returnValue: [Activity] = []
+        for (_, activity) in activities {
+            returnValue.append(activity)
+        }
+        return returnValue
+    }
 }
 
 struct Schedule: Codable {
@@ -27,7 +35,8 @@ struct Schedule: Codable {
     var sunday: [String]
 }
 
-struct Activity: Codable {
+struct Activity: Codable, Identifiable {
+    var id: String
     var type: String
     var stravaID: String
     var caption: String

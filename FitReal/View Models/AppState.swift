@@ -15,12 +15,38 @@ import FirebaseAuth
     
     @Published var authenticationState: AuthenticationStatus = .unauthenticated
     
-    init() {
+    var debug: Bool = false
+    
+    init(debug: Bool = false) {
         registerAuthStateHandler()
         
-        #warning("Sample FRUser is loaded here and should only be here for debug purposes.")
-        appUser = FRUser(firstName: "John", lastName: "Appleseed", age: 17, fireAuthID: user?.uid ?? "Unknown ID", friendRequests: [], schedule: Schedule(monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: ["7-9"]), activities: [:])
+        if debug {
+            appUser = AppState.loadSampleAppUserData(fireAuthID: "DEBUGID")
+        }
     }
     
     var authStateHandle: AuthStateDidChangeListenerHandle?
+    
+    static func loadSampleAppUserData(fireAuthID: String) -> FRUser {
+        let activityID = UUID().uuidString
+        return FRUser(
+            firstName: "John",
+            lastName: "Appleseed",
+            age: 17,
+            fireAuthID: fireAuthID,
+            friendRequests: [],
+            schedule: Schedule(
+                monday: [],
+                tuesday: [],
+                wednesday: [],
+                thursday: [],
+                friday: [],
+                saturday: [],
+                sunday: ["7-9"]
+            ),
+            activities: [
+                activityID: Activity(id: activityID, type: "Ride", stravaID: "NIL", caption: "Fun Run!", movingTime: 3456.0, elapsedTime: 3500.0, startDateLocal: Date.now, distance: 4000)
+            ]
+        )
+    }
 }

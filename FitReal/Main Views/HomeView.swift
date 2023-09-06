@@ -11,12 +11,26 @@ import FirebaseAuth
 struct HomeView: View {
     @ObservedObject var appState: AppState
     
+    var appUser: FRUser? {
+        appState.appUser
+    }
+    
     var body: some View {
         NavigationView {
-            ScrollView {
-                Button("Sign Out", action: appState.signOut)
+            if let appUser = appUser {
+                ScrollView {
+                    ForEach(appUser.extractedActivities) { activity in
+                        VStack(alignment: .center) {
+                            Text("\(activity.type)")
+                            Text("\(activity.caption)")
+                            Text("\(activity.distance)m")
+                        }
+                    }
+                }
+                .navigationTitle("Home")
+            } else {
+                Text("Error")
             }
-            .navigationTitle("Home")
         }
         .preferredColorScheme(.dark)
     }
@@ -24,7 +38,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(appState: AppState())
+        HomeView(appState: AppState(debug: true))
             .preferredColorScheme(.dark)
     }
 }
