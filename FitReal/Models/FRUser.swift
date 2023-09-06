@@ -44,4 +44,12 @@ struct Activity: Codable, Identifiable {
     var elapsedTime: Double
     var startDateLocal: Date
     var distance: Double
+    
+    var frontImageName: String {
+        "\(id)_front"
+    }
+    
+    var rearImageName: String {
+        "\(id)_rear"
+    }
 }

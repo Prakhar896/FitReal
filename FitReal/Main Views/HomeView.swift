@@ -20,13 +20,10 @@ struct HomeView: View {
             if let appUser = appUser {
                 ScrollView {
                     ForEach(appUser.extractedActivities) { activity in
-                        VStack(alignment: .center) {
-                            Text("\(activity.type)")
-                            Text("\(activity.caption)")
-                            Text("\(activity.distance)m")
-                        }
+                        ActivityView(appUser: appUser, activityID: activity.id)
                     }
                 }
+                .padding()
                 .navigationTitle("Home")
             } else {
                 Text("Error")
