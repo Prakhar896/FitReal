@@ -15,6 +15,16 @@ struct ActivityView: View {
         appUser.extractedActivities.first { $0.id == activityID }
     }
     
+    @State var reversed = false
+    
+    var frontImageName: String {
+        reversed ? "RearSample": "FrontSample"
+    }
+    
+    var rearImageName: String {
+        reversed ? "FrontSample": "RearSample"
+    }
+    
     var body: some View {
         if let activity = activity {
             VStack(alignment: .leading, spacing: 10) {
@@ -35,18 +45,26 @@ struct ActivityView: View {
                 
                 // Image Canvas
                 ZStack {
-                    Image("RearSample")
+                    Image(rearImageName)
                         .resizable()
                         .clipped()
                     
                     VStack {
                         HStack {
-                            Image("FrontSample")
+                            Image(frontImageName)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(maxWidth: 100, maxHeight: 130)
-                                .border(.black, width: 5)
                                 .cornerRadius(10)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(.black, lineWidth: 3)
+                                }
+                                .onTapGesture {
+                                    withAnimation {
+                                        reversed.toggle()
+                                    }
+                                }
                             
                             Spacer()
                         }
