@@ -8,9 +8,7 @@
 import Foundation
 
 struct FRUser: Codable {
-    var firstName: String
-    var lastName: String
-    var age: Int
+    var name: String
     var fireAuthID: String
     var friends: [String]
     var friendRequests: [String]
@@ -45,12 +43,7 @@ struct Activity: Codable, Identifiable {
     var elapsedTime: Double
     var startDateLocal: Date
     var distance: Double
-    
-    var frontImageName: String {
-        "\(id)_front"
-    }
-    
-    var rearImageName: String {
-        "\(id)_rear"
-    }
+    var frontImageURL: String
+    var rearImageURL: String
+    var missed: Bool
 }

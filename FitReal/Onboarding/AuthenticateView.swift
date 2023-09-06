@@ -13,10 +13,12 @@ struct AuthenticateView: View {
     }
     
     @ObservedObject var appState: AppState
+    @State var name: String = ""
     @State var email: String = ""
     @State var password: String = ""
     @State var confirmPassword: String = ""
     
+    @FocusState var nameIsFocused
     @FocusState var emailIsFocused
     @FocusState var passwordIsFocused
     @FocusState var confirmPasswordIsFocused
@@ -50,6 +52,17 @@ struct AuthenticateView: View {
             Spacer()
             
             VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading) {
+                    Text("Name")
+                    TextField("Enter your name", text: $name)
+                        .focused($emailIsFocused)
+                        .textFieldStyle(.roundedBorder)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .textContentType(.emailAddress)
+                        .frame(minHeight: 44)
+                }
+                
                 VStack(alignment: .leading) {
                     Text("Email")
                     TextField("Enter your email here", text: $email)
@@ -99,19 +112,29 @@ struct AuthenticateView: View {
                 }
                 
                 Task {
-                    var response: String? = nil
-                    if mode == .signup {
-                        response = await appState.signUp(withEmail: email, password: password)
-                    } else {
-                        response = await appState.signIn(withEmail: email, password: password)
-                    }
+                    appState.authenticationState = .authenticating
                     
-                    if let response = response {
-                        if response.starts(with: "Error") {
-                            errorMessage = response[("Error: ".count)...]
+                    if mode == .signup {
+                        let fireAuthResponse = await createFireAuthUser()
+                        if fireAuthResponse {
+                            let backendResponse = await createBackendUser()
+                            if backendResponse {
+                                appState.authenticationState = .authenticated
+                            } else {
+                                appState.authenticationState = .unauthenticated
+                            }
                         } else {
-                            errorMessage = ""
+                            appState.authenticationState = .unauthenticated
                         }
+                        
+                    } else {
+                        let fireAuthResponse = await signInFireAuthUser()
+                        if fireAuthResponse {
+                            appState.authenticationState = .authenticated
+                        } else {
+                            appState.authenticationState = .unauthenticated
+                        }
+                        
                     }
                 }
             } label: {
@@ -157,9 +180,62 @@ struct AuthenticateView: View {
     }
     
     func dismiss() {
+        nameIsFocused = false
         emailIsFocused = false
         passwordIsFocused = false
         confirmPasswordIsFocused = false
+    }
+    
+    func createFireAuthUser() async -> Bool {
+        var response: String? = nil
+        response = await appState.signUp(withEmail: email, password: password)
+        
+        if let response = response {
+            if response.starts(with: "Error") {
+                errorMessage = response[("Error: ".count)...]
+                return false
+            } else {
+                errorMessage = ""
+                return true
+            }
+        } else {
+            return false
+        }
+    }
+    
+    func createBackendUser() async -> Bool {
+        guard let user = appState.user else {
+            errorMessage = "An unknown error occurred. Please try again."
+            return false
+        }
+        appState.appUser = FRUser(name: name, fireAuthID: appState.user?.uid ?? "", friends: [], friendRequests: [], schedule: Schedule(monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: []), activities: [:])
+        
+        let backendResponse = await appState.backend.createUser(appUser: appState.appUser!)
+        if backendResponse {
+            errorMessage = ""
+            return true
+        } else {
+            errorMessage = "An error occurred. Please try again."
+            return false
+        }
+    }
+    
+    func signInFireAuthUser() async -> Bool {
+        var response: String? = nil
+        response = await appState.signIn(withEmail: email, password: password)
+        
+        if let response = response {
+            if response.starts(with: "Error") {
+                errorMessage = response[("Error: ".count)...]
+                return false
+            } else {
+                errorMessage = ""
+                return true
+            }
+        } else {
+            errorMessage = "An unknown error occurred. Please try again."
+            return false
+        }
     }
 }
 

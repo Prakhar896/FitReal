@@ -27,10 +27,8 @@ struct HomeView: View {
                 .navigationTitle("Home")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button("Test") {
-                            Task {
-                                await BackendAPI().createUser(appUser: appUser)
-                            }
+                        Button("Sign Out") {
+                            appState.signOut()
                         }
                     }
                 }

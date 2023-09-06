@@ -33,7 +33,7 @@ struct ActivityView: View {
                         .font(.system(size: 40))
                     
                     VStack(alignment: .leading) {
-                        Text("\(appUser.firstName) \(appUser.lastName)")
+                        Text("\(appUser.name)")
                             .bold()
                             .font(.headline)
                         Text(activity.startDateLocal.formatted())

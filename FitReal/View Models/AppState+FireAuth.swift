@@ -26,38 +26,28 @@ extension AppState {
     
     func signIn(withEmail email: String, password: String) async -> String {
         do {
-            withAnimation {
-                authenticationState = .authenticating
-            }
             let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
             user = authResult.user
             
             // fetch user details from backend server
             
             print("User \(authResult.user.uid) signed in")
-            authenticationState = .authenticated
             return "Success"
         } catch {
-            authenticationState = .unauthenticated
             return "Error: \(error.localizedDescription)"
         }
     }
     
     func signUp(withEmail email: String, password: String) async -> String {
         do {
-            withAnimation {
-                authenticationState = .authenticating
-            }
             let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
             user = authResult.user
             
             // create FRUser and submit to backend server
             
             print("User \(authResult.user.uid) signed in")
-            authenticationState = .authenticated
             return "Success"
         } catch {
-            authenticationState = .unauthenticated
             return "Error: \(error.localizedDescription)"
         }
     }
@@ -65,9 +55,6 @@ extension AppState {
     func signOut() {
         do {
             try Auth.auth().signOut()
-            withAnimation {
-                authenticationState = .unauthenticated
-            }
             appUser = nil
         } catch {
             print(error.localizedDescription)
