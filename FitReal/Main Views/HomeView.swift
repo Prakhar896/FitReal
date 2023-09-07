@@ -13,30 +13,34 @@ struct HomeView: View {
     
     @State var showingConfigureNextWorkoutSheet = false
     
-    var appUser: FRUser? {
-        appState.appUser
-    }
-    
     var body: some View {
         NavigationView {
             ZStack {
-                if let appUser = appUser {
+                if let appUser = appState.appUser {
                     ScrollView {
                         ForEach(appUser.extractedActivities) { activity in
                             ActivityView(appUser: appUser, activityID: activity.id)
                         }
                     }
                     .padding()
-                    .navigationTitle("Home")
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button("Sign Out") {
-                                appState.signOut()
-                            }
+                } else {
+                    VStack {
+                        ProgressView()
+                    }
+                    .onTapGesture {
+                        Task {
+                            guard let uid = appState.user?.uid else { return }
+                            appState.appUser = await appState.backend.fetchUser(fireAuthID: uid)
                         }
                     }
-                } else {
-                    ProgressView()
+                }
+            }
+            .navigationTitle("Home")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Sign Out") {
+                        appState.signOut()
+                    }
                 }
             }
             .onAppear {

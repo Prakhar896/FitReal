@@ -56,11 +56,10 @@ struct AuthenticateView: View {
                     VStack(alignment: .leading) {
                         Text("Name")
                         TextField("Enter your name", text: $name)
-                            .focused($emailIsFocused)
+                            .focused($nameIsFocused)
                             .textFieldStyle(.roundedBorder)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled()
-                            .textContentType(.emailAddress)
                             .frame(minHeight: 44)
                     }
                 }

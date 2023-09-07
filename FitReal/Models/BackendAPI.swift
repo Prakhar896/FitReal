@@ -9,7 +9,7 @@ import Foundation
 
 struct BackendAPI {
     // Backend Server URL
-    let serverURLString: String = "http://localhost:8000"
+    let serverURLString: String = "http://172.20.10.8:8000"
     let apiKey: String = "realfit@t13.NYP2023"
     
     func createUser(appUser: FRUser) async -> Bool {
