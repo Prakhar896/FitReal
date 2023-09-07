@@ -52,15 +52,17 @@ struct AuthenticateView: View {
             Spacer()
             
             VStack(alignment: .leading, spacing: 20) {
-                VStack(alignment: .leading) {
-                    Text("Name")
-                    TextField("Enter your name", text: $name)
-                        .focused($emailIsFocused)
-                        .textFieldStyle(.roundedBorder)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                        .textContentType(.emailAddress)
-                        .frame(minHeight: 44)
+                if mode == .signup {
+                    VStack(alignment: .leading) {
+                        Text("Name")
+                        TextField("Enter your name", text: $name)
+                            .focused($emailIsFocused)
+                            .textFieldStyle(.roundedBorder)
+                            .textInputAutocapitalization(.never)
+                            .autocorrectionDisabled()
+                            .textContentType(.emailAddress)
+                            .frame(minHeight: 44)
+                    }
                 }
                 
                 VStack(alignment: .leading) {

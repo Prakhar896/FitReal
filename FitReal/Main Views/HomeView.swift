@@ -36,7 +36,7 @@ struct HomeView: View {
                         }
                     }
                 } else {
-                    Text("Error")
+                    ProgressView()
                 }
             }
             .onAppear {
@@ -46,6 +46,10 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showingConfigureNextWorkoutSheet) {
                 Text("Configure your next workout....")
+            }
+            .task {
+                guard let uid = appState.user?.uid else { return }
+                appState.appUser = await appState.backend.fetchUser(fireAuthID: uid)
             }
         }
         .preferredColorScheme(.dark)

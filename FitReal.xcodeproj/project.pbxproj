@@ -15,6 +15,7 @@
 		E23322782AA8658600000A95 /* AppState+FireAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23322772AA8658600000A95 /* AppState+FireAuth.swift */; };
 		E233227D2AA8766600000A95 /* AppState+Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233227C2AA8766600000A95 /* AppState+Backend.swift */; };
 		E233227F2AA8767300000A95 /* FRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233227E2AA8767300000A95 /* FRUser.swift */; };
+		E233C4502AA96607009322F7 /* ConfigureNextWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233C44F2AA96607009322F7 /* ConfigureNextWorkoutView.swift */; };
 		E25984FF2AA8B6C800D4D7CD /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25984FE2AA8B6C800D4D7CD /* ActivityView.swift */; };
 		E25985012AA8CE1000D4D7CD /* BackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25985002AA8CE1000D4D7CD /* BackendAPI.swift */; };
 		E25985032AA8EE5900D4D7CD /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25985022AA8EE5900D4D7CD /* NotificationManagement.swift */; };
@@ -62,6 +63,7 @@
 		E23322772AA8658600000A95 /* AppState+FireAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+FireAuth.swift"; sourceTree = "<group>"; };
 		E233227C2AA8766600000A95 /* AppState+Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Backend.swift"; sourceTree = "<group>"; };
 		E233227E2AA8767300000A95 /* FRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRUser.swift; sourceTree = "<group>"; };
+		E233C44F2AA96607009322F7 /* ConfigureNextWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureNextWorkoutView.swift; sourceTree = "<group>"; };
 		E25984FE2AA8B6C800D4D7CD /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		E25985002AA8CE1000D4D7CD /* BackendAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendAPI.swift; sourceTree = "<group>"; };
 		E25985022AA8EE5900D4D7CD /* NotificationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				E23322702AA85D3B00000A95 /* HomeView.swift */,
+				E233C44F2AA96607009322F7 /* ConfigureNextWorkoutView.swift */,
 				E25984FE2AA8B6C800D4D7CD /* ActivityView.swift */,
 			);
 			path = "Main Views";
@@ -361,6 +364,7 @@
 				E25985032AA8EE5900D4D7CD /* NotificationManagement.swift in Sources */,
 				E2CF2C912AA7FCAD001B27DA /* AppState.swift in Sources */,
 				E2CF2C562AA7925D001B27DA /* FitRealApp.swift in Sources */,
+				E233C4502AA96607009322F7 /* ConfigureNextWorkoutView.swift in Sources */,
 				E25984FF2AA8B6C800D4D7CD /* ActivityView.swift in Sources */,
 				E233226B2AA8273800000A95 /* RootView.swift in Sources */,
 				E23322712AA85D3B00000A95 /* HomeView.swift in Sources */,
