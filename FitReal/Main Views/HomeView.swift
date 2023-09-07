@@ -45,6 +45,7 @@ struct HomeView: View {
             }
             .onAppear {
                 if !appState.nextWorkoutActivated {
+                    print("Showing workout configuration view.")
                     showingConfigureNextWorkoutSheet = true
                 }
             }

@@ -44,7 +44,14 @@ struct ConfigureNextWorkoutView: View {
                     let notification = Notification.newPostNotification(triggerDatetime: triggerDatetime)
                     notification.add()
                     
+                    appState.appUser?.nextWorkout = triggerDatetime
+                    
                     UserDefaults.standard.set(true, forKey: "NextWorkoutActivated")
+                    
+//                    Task {
+//                        guard let uid = appState.user?.uid else { return }
+//                        await appState.backend.updateNextWorkout(datetime: triggerDatetime, fireAuthID: uid)
+//                    }
                     
                     dismiss()
                 } label: {

@@ -15,11 +15,6 @@ extension AppState {
             authStateHandle = Auth.auth().addStateDidChangeListener({ auth, user in
                 self.user = user
                 self.authenticationState = user == nil ? .unauthenticated: .authenticated
-                
-                // temporarily, load sample data
-//                if user != nil {
-//                    self.appUser = AppState.loadSampleAppUserData(fireAuthID: user?.uid ?? "No Fire Auth ID")
-//                }
             })
         }
     }
@@ -56,6 +51,8 @@ extension AppState {
         do {
             try Auth.auth().signOut()
             appUser = nil
+            UserDefaults.standard.set(false, forKey: "NextWorkoutActivated")
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         } catch {
             print(error.localizedDescription)
         }
