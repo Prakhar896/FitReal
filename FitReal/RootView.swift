@@ -14,9 +14,6 @@ struct RootView: View {
         if appState.authenticationState == .authenticated {
             HomeView(appState: appState)
                 .preferredColorScheme(.dark)
-//                .onAppear {
-//                    print(appState.appUser)
-//                }
         } else {
             WelcomeView(appState: appState)
                 .preferredColorScheme(.dark)

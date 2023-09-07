@@ -14,10 +14,10 @@ extension String {
                                              range.upperBound - range.lowerBound))
         return String(self[start..<end])
     }
-
+    
     subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
         let start = index(startIndex, offsetBy: max(0, range.lowerBound))
-         return String(self[start...])
+        return String(self[start...])
     }
 }
 
@@ -26,5 +26,19 @@ extension UserDefaults {
         if let bundleID = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: bundleID)
         }
+    }
+}
+
+extension Date {
+    static func randomBetween(start: Date, end: Date) -> Date {
+        var date1 = start
+        var date2 = end
+        if date2 < date1 {
+            let temp = date1
+            date1 = date2
+            date2 = temp
+        }
+        let span = TimeInterval.random(in: date1.timeIntervalSinceNow...date2.timeIntervalSinceNow)
+        return Date(timeIntervalSinceNow: span)
     }
 }

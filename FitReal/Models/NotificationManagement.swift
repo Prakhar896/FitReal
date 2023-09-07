@@ -32,4 +32,8 @@ struct Notification: Codable {
             }
         }
     }
+    
+    static func newPostNotification(triggerDatetime: Date) -> Notification {
+        return Notification(id: "NextWorkout", title: "⚠️ Post a workout FitReal! ⚠️", body: "Working out? Tap here to post a FitReal to share your workout with your friends!", triggerDatetime: triggerDatetime)
+    }
 }

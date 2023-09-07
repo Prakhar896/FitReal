@@ -45,7 +45,7 @@ struct HomeView: View {
                 }
             }
             .sheet(isPresented: $showingConfigureNextWorkoutSheet) {
-                Text("Configure your next workout....")
+                ConfigureNextWorkoutView(appState: appState)
             }
             .task {
                 guard let uid = appState.user?.uid else { return }
