@@ -7,9 +7,12 @@ Essentially, FitReal allows you to configure a period when you are working out. 
 
 FitReal aims to not only encourage, but further promote conversation, sharing and the socialization of all aspects of fitness and healthy living; from posting a FitReal when at the gym to posting one during a run at a park, the app re-defines what it means to share a passion that many don't expect others to have as well.
 
-**Here's a [Video Demo](https://github.com/Prakhar896/FitReal/blob/main/fitreal_demo%20-%20Made%20with%20Clipchamp.mp4)**
+## Links
+- **[Video Demo](https://github.com/Prakhar896/FitReal/blob/main/fitreal_demo%20-%20Made%20with%20Clipchamp.mp4)**
+- **[FitReal Backend Source Code](https://github.com/toasterclock/fitreal-backend)**
 
-Link not working? Try this: https://go.prakhartrivedi.works/FitRealAppDemo
+
+Video Demo link not working? Try this: https://go.prakhartrivedi.works/FitRealAppDemo
 
 
 ## Tech Stack
