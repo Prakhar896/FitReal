@@ -31,8 +31,12 @@ struct HomeView: View {
                     .onTapGesture {
                         Task {
                             guard let uid = appState.user?.uid else { return }
-                            if appState.debug { return }
-                            appState.appUser = await appState.backend.fetchUser(fireAuthID: uid)
+                            if appState.debug {
+                                appState.appUser = AppState.loadSampleAppUserData(fireAuthID: appState.user?.uid ?? "DEBUGID", name: appState.user?.displayName ?? "John Appleseed")
+                                return
+                            }
+                            
+//                            appState.appUser = await appState.backend.fetchUser(fireAuthID: uid)
                         }
                     }
                 }
@@ -57,10 +61,8 @@ struct HomeView: View {
                     }
                 }
             }
-            .onChange(of: UserDefaults.standard.bool(forKey: "ShowNewActivityScreen"), perform: { newValue in
-                showingNewActivitySheet = true
-            })
             .onAppear {
+                print(appState.appUser?.name)
                 let showNewActivity = UserDefaults.standard.bool(forKey: "ShowNewActivityScreen")
                 if showNewActivity {
                     showingNewActivitySheet = true
@@ -77,11 +79,14 @@ struct HomeView: View {
             .fullScreenCover(isPresented: $showingNewActivitySheet) {
                 NewActivityView(appState: appState)
             }
-            .task {
-                guard let uid = appState.user?.uid else { return }
-                if appState.debug { return }
-                appState.appUser = await appState.backend.fetchUser(fireAuthID: uid)
-            }
+//            .task {
+//                guard let uid = appState.user?.uid else { return }
+//                if appState.debug {
+//                    appState.appUser = AppState.loadSampleAppUserData(fireAuthID: appState.user?.uid ?? "DEBUGID")
+//                    return
+//                }
+//                appState.appUser = await appState.backend.fetchUser(fireAuthID: uid)
+//            }
         }
         .preferredColorScheme(.dark)
     }

@@ -66,7 +66,7 @@ struct ActivityView: View {
 }
 
 struct ActivityView_Previews: PreviewProvider {
-    static let sampleUser = AppState.loadSampleAppUserData(fireAuthID: "DEBUGID")
+    static let sampleUser = AppState.loadSampleAppUserData(fireAuthID: "DEBUGID", name: "John Appleseed")
     static let sampleActivityID = sampleUser.extractedActivities.first!.id
     
     static var previews: some View {

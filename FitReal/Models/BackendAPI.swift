@@ -39,8 +39,9 @@ struct BackendAPI {
         
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from: bodyData!)
-            
+            print("hello3")
             let decodedResponse = String(data: data, encoding: .utf8) ?? "Failed to decode response."
+            print("hello4")
             print("CREATEUSER BACKEND RESPONSE: \(decodedResponse)")
             return true
         } catch {
