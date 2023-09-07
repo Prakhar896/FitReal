@@ -52,6 +52,7 @@ extension AppState {
             try Auth.auth().signOut()
             appUser = nil
             UserDefaults.standard.set(false, forKey: "NextWorkoutActivated")
+            nextWorkoutActivated = false
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         } catch {
             print(error.localizedDescription)
