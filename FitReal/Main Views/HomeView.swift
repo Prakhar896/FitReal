@@ -31,6 +31,7 @@ struct HomeView: View {
                     .onTapGesture {
                         Task {
                             guard let uid = appState.user?.uid else { return }
+                            if appState.debug { return }
                             appState.appUser = await appState.backend.fetchUser(fireAuthID: uid)
                         }
                     }
@@ -73,6 +74,7 @@ struct HomeView: View {
             }
             .task {
                 guard let uid = appState.user?.uid else { return }
+                if appState.debug { return }
                 appState.appUser = await appState.backend.fetchUser(fireAuthID: uid)
             }
         }

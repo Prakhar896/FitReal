@@ -17,6 +17,7 @@
 		E233227F2AA8767300000A95 /* FRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233227E2AA8767300000A95 /* FRUser.swift */; };
 		E233C4502AA96607009322F7 /* ConfigureNextWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233C44F2AA96607009322F7 /* ConfigureNextWorkoutView.swift */; };
 		E233C4522AA98227009322F7 /* NewActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233C4512AA98227009322F7 /* NewActivityView.swift */; };
+		E233C4542AA98C08009322F7 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E233C4532AA98C08009322F7 /* CameraViewController.swift */; };
 		E25984FF2AA8B6C800D4D7CD /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25984FE2AA8B6C800D4D7CD /* ActivityView.swift */; };
 		E25985012AA8CE1000D4D7CD /* BackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25985002AA8CE1000D4D7CD /* BackendAPI.swift */; };
 		E25985032AA8EE5900D4D7CD /* NotificationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25985022AA8EE5900D4D7CD /* NotificationManagement.swift */; };
@@ -66,6 +67,7 @@
 		E233227E2AA8767300000A95 /* FRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRUser.swift; sourceTree = "<group>"; };
 		E233C44F2AA96607009322F7 /* ConfigureNextWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureNextWorkoutView.swift; sourceTree = "<group>"; };
 		E233C4512AA98227009322F7 /* NewActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityView.swift; sourceTree = "<group>"; };
+		E233C4532AA98C08009322F7 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		E25984FE2AA8B6C800D4D7CD /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		E25985002AA8CE1000D4D7CD /* BackendAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendAPI.swift; sourceTree = "<group>"; };
 		E25985022AA8EE5900D4D7CD /* NotificationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagement.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				E233C4512AA98227009322F7 /* NewActivityView.swift */,
 				E233C44F2AA96607009322F7 /* ConfigureNextWorkoutView.swift */,
 				E25984FE2AA8B6C800D4D7CD /* ActivityView.swift */,
+				E233C4532AA98C08009322F7 /* CameraViewController.swift */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				E2CF2C582AA7925D001B27DA /* WelcomeView.swift in Sources */,
 				E23322682AA826F400000A95 /* AuthenticationStatus.swift in Sources */,
 				E233C4522AA98227009322F7 /* NewActivityView.swift in Sources */,
+				E233C4542AA98C08009322F7 /* CameraViewController.swift in Sources */,
 				E233227D2AA8766600000A95 /* AppState+Backend.swift in Sources */,
 				E25985032AA8EE5900D4D7CD /* NotificationManagement.swift in Sources */,
 				E2CF2C912AA7FCAD001B27DA /* AppState.swift in Sources */,
@@ -538,6 +542,7 @@
 				DEVELOPMENT_TEAM = 49JL8262M2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to allow you to make FitReal posts.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -567,6 +572,7 @@
 				DEVELOPMENT_TEAM = 49JL8262M2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to allow you to make FitReal posts.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

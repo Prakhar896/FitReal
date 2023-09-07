@@ -25,7 +25,7 @@ import FirebaseAuth
         
         registerAuthStateHandler()
         if debug {
-            appUser = AppState.loadSampleAppUserData(fireAuthID: "DEBUGID")
+            appUser = AppState.loadSampleAppUserData(fireAuthID: user?.uid ?? "DEBUGID")
         }
         
         nextWorkoutActivated = UserDefaults.standard.bool(forKey: "NextWorkoutActivated")
