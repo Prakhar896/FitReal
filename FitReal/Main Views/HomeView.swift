@@ -19,8 +19,13 @@ struct HomeView: View {
             ZStack {
                 if let appUser = appState.appUser {
                     ScrollView {
-                        ForEach(appUser.extractedActivities) { activity in
-                            ActivityView(appState: appState, appUser: appUser, activityID: activity.id)
+                        if appUser.extractedActivities.isEmpty {
+                            Text("Noting to see here yet!")
+                                .padding(.top, 30)
+                        } else {
+                            ForEach(appUser.extractedActivities) { activity in
+                                ActivityView(appState: appState, appUser: appUser, activityID: activity.id)
+                            }
                         }
                     }
                     .padding()
