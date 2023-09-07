@@ -9,6 +9,7 @@ FitReal aims to not only encourage, but further promote conversation, sharing an
 
 **Here's a [Video Demo](https://github.com/Prakhar896/FitReal/blob/main/fitreal_demo%20-%20Made%20with%20Clipchamp.mp4)**
 
+Link not working? Try this: https://go.prakhartrivedi.works/FitRealAppDemo
 
 
 ## Tech Stack
