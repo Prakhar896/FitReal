@@ -1,4 +1,4 @@
-<img src="https://github.com/Prakhar896/FitReal/assets/53103894/a60287f8-4754-4ffd-a247-1221d522a921" height="150px">
+<img src="https://github.com/Prakhar896/FitReal/blob/main/FitRealLogo.png?raw=true" height="150px">
 
 # FitReal
 FitReal is an iOS app that revolutionises the idea of sharing and talking about fitness. FitReal is a massive implementation project with multiple upcoming features as well.
