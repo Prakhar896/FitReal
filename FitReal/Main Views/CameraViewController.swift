@@ -12,7 +12,6 @@ import Vision
 
 struct CameraView: UIViewControllerRepresentable {
     @Binding var image: UIImage?
-    @Binding var taken: Bool
     
     typealias UIViewControllerType = UIImagePickerController
     
@@ -29,7 +28,6 @@ struct CameraView: UIViewControllerRepresentable {
             guard let image = info[.originalImage] as? UIImage else { return }
             
             self.parent.image = image
-            self.parent.taken = true
         }
     }
     

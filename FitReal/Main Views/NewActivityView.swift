@@ -13,48 +13,83 @@ struct NewActivityView: View {
     
     @State var image: Image? = nil
     @State var receivedImage: UIImage? = nil
-    @State var imageTaken: Bool = false
+    
+    @State var showingImageCaptureSheet = false
+    
+    var header: some View {
+        HStack(spacing: 15) {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.down")
+                    .bold()
+                    .foregroundColor(.accentColor)
+            }
+            
+            Text("New FitReal")
+                .font(.title2.bold())
+                .foregroundColor(.white)
+            
+        }
+        .padding()
+    }
+    
+    var canvas: some View {
+        ZStack {
+            Rectangle()
+                .fill(.secondary.opacity(image == nil ? 1: 0.4))
+            
+            if image == nil {
+                Text("Tap to select a picture")
+                    .foregroundColor(.white)
+                    .font(.headline)
+            }
+            
+            image?
+                .resizable()
+                .scaledToFit()
+        }
+        .onTapGesture {
+            receivedImage = nil
+            showingImageCaptureSheet = true
+        }
+        .cornerRadius(10)
+    }
     
     var body: some View {
-        ZStack {
+        VStack {
             if let appUser = appState.appUser {
-                ZStack {
-                    if !imageTaken {
-                        CameraView(image: $receivedImage, taken: $imageTaken)
-                            .edgesIgnoringSafeArea(.all)
-                    } else {
-                        image?
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 400, height: 400)
-                    }
-                    
+                VStack {
                     VStack(alignment: .center) {
-                        HStack(spacing: 15) {
-                            Button {
-                                dismiss()
-                            } label: {
-                                Image(systemName: "chevron.down")
-                                    .bold()
-                                    .foregroundColor(.accentColor)
-                            }
-                            
-                            Text("New FitReal")
-                                .font(.title2.bold())
-                                .foregroundColor(.white)
-                            
-                        }
-                        .padding()
-                        .background(.black)
-                        .cornerRadius(10)
+                        header
                         
+                        canvas
+                            .frame(width: UIScreen.main.bounds.width * 0.9)
+                            .padding(.top, 30)
+                        
+                        Button {
+                           print("upload image to backend and refresh feed")
+                        } label: {
+                            Text("POST")
+                                .foregroundColor(.accentColor)
+                                .font(.title.weight(.heavy))
+                        }
+                        .padding(.vertical, 40)
+                        .disabled(image == nil)
                         
                         Spacer()
+                        Spacer()
                     }
+                }
+                .onAppear {
+                    showingImageCaptureSheet = true
                 }
                 .onChange(of: receivedImage) { _ in
                     guard let receivedImage = receivedImage else { return }
                     image = Image(uiImage: receivedImage)
+                }
+                .fullScreenCover(isPresented: $showingImageCaptureSheet) {
+                    CameraView(image: $receivedImage)
                 }
             } else {
                 VStack {
