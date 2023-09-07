@@ -13,6 +13,7 @@ struct NewActivityView: View {
     
     @State var image: Image? = nil
     @State var receivedImage: UIImage? = nil
+    @State var caption: String = ""
     
     @State var showingImageCaptureSheet = false
     
@@ -67,8 +68,21 @@ struct NewActivityView: View {
                             .frame(width: UIScreen.main.bounds.width * 0.9)
                             .padding(.top, 30)
                         
+                        TextField("Caption", text: $caption)
+                            .textFieldStyle(.roundedBorder)
+                            .frame(width: 200, height: 44)
+                        
                         Button {
-                           print("upload image to backend and refresh feed")
+                            // create new activity
+                            let id = UUID().uuidString
+                            let activity = Activity(id: id, type: "Ride", stravaID: UUID().uuidString, caption: caption, movingTime: 1000.0, elapsedTime: 1250.0, startDateLocal: Date.now, distance: 2458.6, frontImageURL: "", rearImageURL: "", missed: false)
+                            
+                            appState.appUser!.activities[id] = activity
+                            appState.images[id] = receivedImage!
+                            
+                            UserDefaults.standard.set(false, forKey: "ShowNewActivityScreen")
+                            
+                            dismiss()
                         } label: {
                             Text("POST")
                                 .foregroundColor(.accentColor)

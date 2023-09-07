@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
 
 extension String {
     subscript(_ range: CountableRange<Int>) -> String {
@@ -40,5 +42,28 @@ extension Date {
         }
         let span = TimeInterval.random(in: date1.timeIntervalSinceNow...date2.timeIntervalSinceNow)
         return Date(timeIntervalSinceNow: span)
+    }
+}
+
+func saveImageToDocumentDirectory(_ chosenImage: UIImage, filename: String) -> String {
+    let directoryPath =  NSHomeDirectory().appending("/Documents/")
+    if !FileManager.default.fileExists(atPath: directoryPath) {
+        do {
+            try FileManager.default.createDirectory(at: NSURL.fileURL(withPath: directoryPath), withIntermediateDirectories: true, attributes: nil)
+        } catch {
+            print(error)
+        }
+    }
+    
+    let filepath = directoryPath.appending(filename)
+    let url = NSURL.fileURL(withPath: filepath)
+    do {
+        try chosenImage.jpegData(compressionQuality: 1.0)?.write(to: url, options: .atomic)
+        return String.init("/Documents/\(filename)")
+        
+    } catch {
+        print(error)
+        print("file cant not be save at path \(filepath), with error : \(error)");
+        return filepath
     }
 }

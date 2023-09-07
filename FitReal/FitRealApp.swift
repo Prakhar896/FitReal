@@ -26,8 +26,15 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         return true
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         UserDefaults.standard.set(true, forKey: "ShowNewActivityScreen")
+        UserDefaults.standard.set(false, forKey: "NextWorkoutActivated")
+        let identifier = response.notification.request.identifier
+        print("Notification with ID '\(identifier)' was received.")
         completionHandler()
     }
 }

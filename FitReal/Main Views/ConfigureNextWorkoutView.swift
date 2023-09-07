@@ -30,7 +30,7 @@ struct ConfigureNextWorkoutView: View {
                 Spacer()
                 
                 VStack(spacing: 20) {
-                    DatePicker("Start Datetime", selection: $startDate)
+                    DatePicker("Start Datetime", selection: $startDate, in: Date.now...)
                     DatePicker("End Datetime", selection: $endDate, in: startDate...)
                 }
                 
@@ -38,9 +38,7 @@ struct ConfigureNextWorkoutView: View {
                 
                 Button {
                     // add notification and update UserDefaults
-                    print("hello")
-                    let triggerDatetime = Date.randomBetween(start: startDate, end: endDate)
-                    print("hello2")
+                    let triggerDatetime = startDate.addingTimeInterval(30)
                     print(triggerDatetime.formatted(date: .long, time: .complete))
                     
                     let notification = Notification.newPostNotification(triggerDatetime: triggerDatetime)

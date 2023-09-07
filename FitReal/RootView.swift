@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
-    @StateObject var appState: AppState = AppState(debug: true)
+    @StateObject var appState: AppState = AppState(debug: false)
     
     var body: some View {
         if appState.authenticationState == .authenticated {

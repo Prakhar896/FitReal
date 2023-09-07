@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ActivityView: View {
+    @ObservedObject var appState: AppState
     var appUser: FRUser
     var activityID: String
     
@@ -23,6 +24,10 @@ struct ActivityView: View {
     
     var rearImageName: String {
         reversed ? "FrontSample": "RearSample"
+    }
+    
+    var activityImage: UIImage {
+        appState.images[activityID] ?? UIImage(systemName: "photo.fill")!
     }
     
     var body: some View {
@@ -45,35 +50,13 @@ struct ActivityView: View {
                 
                 // Image Canvas
                 ZStack {
-                    Image(rearImageName)
+                    Image(uiImage: activityImage)
                         .resizable()
                         .clipped()
-                    
-                    VStack {
-                        HStack {
-                            Image(frontImageName)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(maxWidth: 100, maxHeight: 130)
-                                .cornerRadius(10)
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(.black, lineWidth: 3)
-                                }
-                                .onTapGesture {
-                                    withAnimation {
-                                        reversed.toggle()
-                                    }
-                                }
-                            
-                            Spacer()
-                        }
-                        
-                        Spacer()
-                    }
-                    .padding([.top, .leading])
                 }
                 .cornerRadius(10)
+                
+                Text(activity.caption)
             }
             .frame(maxWidth: UIScreen.main.bounds.width * 0.9, maxHeight: 500)
         } else {
@@ -87,7 +70,7 @@ struct ActivityView_Previews: PreviewProvider {
     static let sampleActivityID = sampleUser.extractedActivities.first!.id
     
     static var previews: some View {
-        ActivityView(appUser: sampleUser, activityID: sampleActivityID)
+        ActivityView(appState: AppState(debug: true), appUser: sampleUser, activityID: sampleActivityID)
             .preferredColorScheme(.dark)
     }
 }

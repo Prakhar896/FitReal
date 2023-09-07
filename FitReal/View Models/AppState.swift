@@ -13,6 +13,7 @@ import FirebaseAuth
     @Published var user: User? = nil
     @Published var appUser: FRUser? = nil
     @Published var nextWorkoutActivated = false
+    @Published var images: [String: UIImage] = [:]
     
     @Published var authenticationState: AuthenticationStatus = .unauthenticated
     

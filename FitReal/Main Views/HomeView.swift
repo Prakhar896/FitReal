@@ -20,7 +20,7 @@ struct HomeView: View {
                 if let appUser = appState.appUser {
                     ScrollView {
                         ForEach(appUser.extractedActivities) { activity in
-                            ActivityView(appUser: appUser, activityID: activity.id)
+                            ActivityView(appState: appState, appUser: appUser, activityID: activity.id)
                         }
                     }
                     .padding()
@@ -50,14 +50,19 @@ struct HomeView: View {
                         UserDefaults.resetDefaults()
                     }
                     
-                    Button("Configure") {
+                    Button {
                         showingConfigureNextWorkoutSheet = true
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
             }
+            .onChange(of: UserDefaults.standard.bool(forKey: "ShowNewActivityScreen"), perform: { newValue in
+                showingNewActivitySheet = true
+            })
             .onAppear {
                 let showNewActivity = UserDefaults.standard.bool(forKey: "ShowNewActivityScreen")
-                if showNewActivity || true {
+                if showNewActivity {
                     showingNewActivitySheet = true
                 }
                 
