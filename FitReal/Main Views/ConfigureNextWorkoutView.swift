@@ -38,7 +38,7 @@ struct ConfigureNextWorkoutView: View {
                 
                 Button {
                     // add notification and update UserDefaults
-                    let triggerDatetime = startDate.addingTimeInterval(30)
+                    let triggerDatetime = startDate.addingTimeInterval(15)
                     print(triggerDatetime.formatted(date: .long, time: .complete))
                     
                     let notification = Notification.newPostNotification(triggerDatetime: triggerDatetime)

@@ -11,7 +11,7 @@ import UIKit
 
 struct BackendAPI {
     // Backend Server URL
-    let serverURLString: String = "http://172.26.186.149:8000"
+    let serverURLString: String = "https://fitreal-backend.yisiansim.repl.co"
     let apiKey: String = "realfit@t13.NYP2023"
     
     func createUser(appUser: FRUser) async -> Bool {
