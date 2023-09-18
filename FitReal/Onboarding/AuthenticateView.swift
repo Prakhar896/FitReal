@@ -81,7 +81,7 @@ struct AuthenticateView: View {
                         .focused($passwordIsFocused)
                         .textFieldStyle(.roundedBorder)
                         .textInputAutocapitalization(.never)
-                        .textContentType(.password)
+//                        .textContentType(.password)
                         .frame(minHeight: 44)
                 }
                 
@@ -92,7 +92,7 @@ struct AuthenticateView: View {
                             .focused($confirmPasswordIsFocused)
                             .textFieldStyle(.roundedBorder)
                             .textInputAutocapitalization(.never)
-                            .textContentType(.password)
+//                            .textContentType(.password)
                             .frame(minHeight: 44)
                     }
                 }
