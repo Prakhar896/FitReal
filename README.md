@@ -1,6 +1,8 @@
 <img src="https://github.com/Prakhar896/FitReal/blob/main/FitRealLogo.png?raw=true" height="150px">
 
 # FitReal
+**This app was built for the NYP Code Overflow Hackathon 2023 and we clinched second place! 🎉🎉**
+
 FitReal is an iOS app that revolutionises the idea of sharing and talking about fitness. FitReal is a quite a big project with various multiple parts as well as multiple upcoming features.
 
 Essentially, FitReal allows you to configure a period when you are working out. During that period, you are sent a notification to snap yourself and your dumbbells and share with your friends! 💪
